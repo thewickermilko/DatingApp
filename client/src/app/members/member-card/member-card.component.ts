@@ -1,3 +1,4 @@
+import { ViewEncapsulation } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 
