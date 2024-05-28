@@ -52,3 +52,7 @@
 .nav-tabs {
   --bs-nav-tabs-border-width: 0px;
 } /*check if it's needed to delete*/
+
+.gallery {
+  height: 600px;
+}
