@@ -19,9 +19,9 @@ export class MemberEditComponent implements OnInit {
   ) {
     if (this.editForm?.dirty) {
       $event.returnValue = true;
-    }
-  } //this activates the browser ability to prevent us from leaving where we were. If the form is dirty, it's going to open
+    }//this activates the browser ability to prevent us from leaving where we were. If the form is dirty, it's going to open
   //browser promp to ask if we want to contonue.
+  } 
   member: Member | undefined;
   user: User | null = null;
 
@@ -47,8 +47,11 @@ export class MemberEditComponent implements OnInit {
   }
 
   updateMember() {
-    console.log(this.member);
-    this.toastr.success('Profile updated successfully');
-    this.editForm?.reset(this.member);
+    this.memberService.updateMember(this.editForm?.value).subscribe({
+      next: (_) => {
+        this.toastr.success('Profile updated successfully');
+        this.editForm?.reset(this.member);
+      },
+    });
   }
 }

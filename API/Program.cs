@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddCors();//added to fix "Save changes" in "Description"
 
 var app = builder.Build();
 
@@ -22,7 +23,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseCors(builder => builder.AllowAnyHeader().WithOrigins("https://localhost:4200"));
+app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+//.AllowAnyMethod() added to fix "Save changes" in "Description"
 //Authentication midleware must be before 'app.MapControllers();' method and after 'app.UseCors()'.
 
 app.UseAuthentication(); //must be before 'app.UseAuthorization();'
