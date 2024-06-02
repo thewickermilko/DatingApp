@@ -42,7 +42,7 @@ public class UsersController : BaseApiController
     [HttpPut]
     public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
     {
-        var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername(););
+        var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
 
         if (user == null) return NotFound();
 
@@ -75,7 +75,11 @@ public class UsersController : BaseApiController
 
         user.Photos.Add(photo);
 
-        if (await _userRepository.SaveAllAsync()) return _mapper.Map<PhotoDto>(photo);
+        if (await _userRepository.SaveAllAsync())
+        {
+            return CreatedAtAction(nameof(GetUser),
+              new { username = user.UserName }, _mapper.Map<PhotoDto>(photo));
+        }
 
         return BadRequest("Problem adding photo");
     }
