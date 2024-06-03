@@ -117,7 +117,7 @@ public class UsersController : BaseApiController
 
         if (photo.IsMain) return BadRequest("You cannot delete your main photo");
 
-        if(photo.PublicId != null)
+        if (photo.PublicId != null)
         {
             var result = await _photoService.DeletePhotoAsync(photo.PublicId);
             if (result.Error != null) return BadRequest(result.Error.Message);
