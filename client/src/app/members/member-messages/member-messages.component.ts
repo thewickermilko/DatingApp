@@ -17,7 +17,5 @@ export class MemberMessagesComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 }
