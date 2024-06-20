@@ -30,7 +30,7 @@
                 <span
                   class="text-success"
                   *ngIf="
-                    !message.dateRead && message.senderUsername !== username
+                    message.dateRead && message.senderUsername !== username
                   "
                   >(read {{ message.dateRead + "Z" | timeago }})</span
                 >
